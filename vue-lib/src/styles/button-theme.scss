@@ -1,0 +1,109 @@
+@import 'theme';
+
+// Базовые стили кнопки
+.simple-button {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, 
+              border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  // Размеры
+  @each $size, $props in $sizes {
+    &--#{$size} {
+      padding: map-get($props, padding);
+      font-size: map-get($props, font-size);
+      line-height: map-get($props, line-height);
+      border-radius: map-get($props, border-radius);
+    }
+  }
+
+  // Варианты цветов
+  @each $variant, $color in $colors {
+    &--#{$variant} {
+      color: #fff;
+      background-color: $color;
+      border-color: $color;
+
+      &:hover {
+        background-color: darken($color, 7.5%);
+        border-color: darken($color, 10%);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 0.2rem rgba($color, 0.5);
+      }
+
+      &:active {
+        background-color: darken($color, 10%);
+        border-color: darken($color, 12.5%);
+      }
+
+      // Outlined вариант
+      &.simple-button--outlined {
+        color: $color;
+        background-color: transparent;
+        border-color: $color;
+
+        &:hover {
+          color: #fff;
+          background-color: $color;
+          border-color: $color;
+        }
+
+        &:focus {
+          box-shadow: 0 0 0 0.2rem rgba($color, 0.5);
+        }
+
+        &:active {
+          color: #fff;
+          background-color: $color;
+          border-color: $color;
+        }
+      }
+    }
+  }
+
+  // Модификаторы
+  &--rounded {
+    border-radius: 50px !important;
+  }
+
+  &--disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      opacity: 0.65;
+    }
+  }
+}
+
+// Специальные стили для secondary outlined
+.simple-button--secondary.simple-button--outlined {
+  color: #6c757d;
+  border-color: #6c757d;
+
+  &:hover {
+    color: #fff;
+    background-color: #6c757d;
+  }
+}
