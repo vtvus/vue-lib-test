@@ -16,6 +16,22 @@
       </div>
     </section>
 
+        <section class="demo-section">
+      <h2>Варианты кнопок XXX</h2>
+      <div class="button-group">
+        <XButton 
+          v-for="variant in variants" 
+          :key="variant"
+          :variant="variant"
+          :text="variant"
+          @click="handleClick(variant)"
+        >
+          {{ variant }}
+        </XButton>
+      </div>
+    </section>
+
+
     <section class="demo-section">
       <h2>Размеры кнопок</h2>
       <div class="button-group">
@@ -72,8 +88,9 @@
 </template>
 
 <script setup lang="ts">
-import SimpleButton from 'vue-lib'
+import { SimpleButton } from 'vue-lib'
 import { IconCheck, IconArrow } from 'vue-lib'
+import { XButton } from 'vue-lib'
 
 const variants = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'] as const
 const sizes = ['small', 'medium', 'large'] as const
@@ -81,6 +98,8 @@ const sizes = ['small', 'medium', 'large'] as const
 const handleClick = (variant: string) => {
   console.log(`Нажата кнопка: ${variant}`)
 }
+
+console.log('Setup SimpleButton is ...', SimpleButton, IconArrow, IconCheck);
 </script>
 
 <style scoped>

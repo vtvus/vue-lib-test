@@ -1,6 +1,23 @@
 <template>
   <div class="demo-app">
+
     <h1>Vue Lib Demo</h1>
+
+        <section class="demo-section">
+      <h2>Варианты кнопок</h2>
+      <div class="button-group">
+        <XButton
+          v-for="variant in variants" 
+          :key="variant"
+          :variant="variant"
+          :text="variant"
+          @click="handleClick(variant)"
+        >
+          {{ variant }}
+      </XButton>
+      </div>
+    </section>
+
     
     <section class="demo-section">
       <h2>Варианты кнопок</h2>
@@ -23,6 +40,7 @@
           v-for="size in sizes" 
           :key="size"
           :size="size"
+          
           variant="primary"
         >
           {{ size }}
@@ -37,10 +55,11 @@
           v-for="variant in variants" 
           :key="variant"
           :variant="variant"
+          :text="variant"
           outlined
         >
           {{ variant }}
-        </SimpleButton>
+        </SimpleButton> 
       </div>
     </section>
 
@@ -73,6 +92,7 @@
 
 <script setup lang="ts">
 import SimpleButton from './components/SimpleButton.vue'
+import XButton from './components/XButton.tsx'
 import { IconCheck, IconArrow } from './index'
 
 const variants = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'] as const
