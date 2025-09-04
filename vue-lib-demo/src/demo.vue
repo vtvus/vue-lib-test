@@ -1,6 +1,16 @@
 <template>
   <div class="demo-app">
     <h1>Vue Lib Demo</h1>
+
+    <section>
+      <h1>Messages</h1>
+      <SomeClass :messages="messages"></SomeClass>
+    </section>
+
+    <section>
+      <h1>Messages Facing Decorator</h1>
+      <SomeClassFacing :messages></SomeClassFacing>
+    </section>
     
     <section class="demo-section">
       <h2>Варианты кнопок</h2>
@@ -74,9 +84,16 @@
 <script setup lang="ts">
 import SimpleButton from 'vue-lib'
 import { IconCheck, IconArrow } from 'vue-lib'
+import SomeClass from './components/SomeClass.vue'
+import SomeClassFacing from './components/SomeClassFacing.vue'
 
 const variants = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'] as const
 const sizes = ['small', 'medium', 'large'] as const
+
+const messages = [
+  {id: 1, text: "text some class"},
+  {id: 2, text: "some another classes"},
+]
 
 const handleClick = (variant: string) => {
   console.log(`Нажата кнопка: ${variant}`)
