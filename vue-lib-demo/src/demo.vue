@@ -100,7 +100,6 @@
 <script setup lang="ts">
 import { SimpleButton } from 'vue-lib'
 import { IconCheck, IconArrow } from 'vue-lib'
-import { XButton } from 'vue-lib'
 import SomeClass from './components/SomeClass.vue'
 import SomeClassFacing from './components/SomeClassFacing.vue'
 
