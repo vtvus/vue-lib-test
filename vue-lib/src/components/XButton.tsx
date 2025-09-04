@@ -26,7 +26,7 @@ export default defineComponent({
     },
     text: {
       type: String,
-      default: ''cd 
+      default: ''
     },
     outlined: {
       type: Boolean,

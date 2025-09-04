@@ -4,7 +4,6 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import dts from 'vite-plugin-dts'
 import path from 'path'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),

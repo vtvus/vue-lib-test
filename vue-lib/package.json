@@ -28,6 +28,7 @@
     "vue-facing-decorator": "^4.0.1"
   },
   "devDependencies": {
+    "@types/node": "^24.3.1",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
     "@vue/tsconfig": "^0.7.0",
