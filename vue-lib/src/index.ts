@@ -1,10 +1,8 @@
 // Экспорт компонентов
 export { default as SimpleButton } from './components/SimpleButton.vue'
-export { default as XButton } from './components/XButton.tsx'
 
 // Экспорт типов
 export type { SimpleButtonProps } from './components/SimpleButton.vue'
-export type { XButtonProps } from './components/XButton.tsx'
 
 // Стили включены в компоненты
 

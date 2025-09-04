@@ -1,123 +1,92 @@
 <template>
-  <div class="demo-app">
-
-    <h1>Vue Lib Demo</h1>
-
-        <section class="demo-section">
-      <h2>Варианты кнопок</h2>
-      <div class="button-group">
-        <XButton
-          v-for="variant in variants" 
-          :key="variant"
-          :variant="variant"
-          :text="variant"
-          @click="handleClick(variant)"
-        >
-          {{ variant }}
-      </XButton>
-      </div>
-    </section>
-
+  <div class="demo-container">
+    <h1>SimpleButton Component Demo</h1>
     
-    <section class="demo-section">
-      <h2>Варианты кнопок</h2>
+    <section>
+      <h2>Variants</h2>
       <div class="button-group">
+        <SimpleButton :variant="$CProps.ButtonVariants.PRIMARY">Primary</SimpleButton>
+        <SimpleButton :variant="$CProps.ButtonVariants.SECONDARY">Secondary</SimpleButton>
+        <SimpleButton :variant="$CProps.ButtonVariants.SUCCESS">Success</SimpleButton>
+        <SimpleButton :variant="$CProps.ButtonVariants.DANGER">Danger</SimpleButton>
+        <SimpleButton :variant="$CProps.ButtonVariants.WARNING">Warning</SimpleButton>
+        <SimpleButton :variant="$CProps.ButtonVariants.INFO">Info</SimpleButton>
+      </div>
+    </section>
+
+    <section>
+      <h2>Sizes</h2>
+      <div class="button-group">
+        <SimpleButton :size="$CProps.ButtonSizes.SMALL">Small</SimpleButton>
+        <SimpleButton :size="$CProps.ButtonSizes.MEDIUM">Medium</SimpleButton>
+        <SimpleButton :size="$CProps.ButtonSizes.LARGE">Large</SimpleButton>
+      </div>
+    </section>
+
+    <section>
+      <h2>Modifiers</h2>
+      <div class="button-group">
+        <SimpleButton :outlined="true">Outlined</SimpleButton>
+        <SimpleButton :rounded="true">Rounded</SimpleButton>
+        <SimpleButton :disabled="true">Disabled</SimpleButton>
+      </div>
+    </section>
+
+    <section>
+      <h2>Combined</h2>
+      <div class="button-group">
+        <SimpleButton :variants="$CProps.ButtonVariants.DANGER"></SimpleButton>
+
         <SimpleButton 
-          v-for="variant in variants" 
-          :key="variant"
-          :variant="variant"
-          @click="handleClick(variant)"
+          :variant="$CProps.ButtonVariants.SUCCESS" 
+          :size="$CProps.ButtonSizes.LARGE" 
+          :rounded="true"
         >
-          {{ variant }}
+          Large Success Rounded
         </SimpleButton>
-      </div>
-    </section>
-
-    <section class="demo-section">
-      <h2>Размеры кнопок</h2>
-      <div class="button-group">
         <SimpleButton 
-          v-for="size in sizes" 
-          :key="size"
-          :size="size"
-          
-          variant="primary"
+          :variant="$CProps.ButtonVariants.DANGER" 
+          :size="$CProps.ButtonSizes.SMALL" 
+          :outlined="true"
         >
-          {{ size }}
+          Small Danger Outlined
         </SimpleButton>
-      </div>
-    </section>
-
-    <section class="demo-section">
-      <h2>Контурные кнопки</h2>
-      <div class="button-group">
-        <SimpleButton 
-          v-for="variant in variants" 
-          :key="variant"
-          :variant="variant"
-          :text="variant"
-          outlined
-        >
-          {{ variant }}
-        </SimpleButton> 
-      </div>
-    </section>
-
-    <section class="demo-section">
-      <h2>Округлые кнопки</h2>
-      <div class="button-group">
-        <SimpleButton variant="primary" rounded>Primary</SimpleButton>
-        <SimpleButton variant="success" rounded outlined>Success</SimpleButton>
-        <SimpleButton variant="danger" rounded size="large">Danger</SimpleButton>
-      </div>
-    </section>
-
-    <section class="demo-section">
-      <h2>Отключенные кнопки</h2>
-      <div class="button-group">
-        <SimpleButton variant="primary" disabled>Disabled</SimpleButton>
-        <SimpleButton variant="secondary" outlined disabled>Disabled Outlined</SimpleButton>
-      </div>
-    </section>
-
-    <section class="demo-section">
-      <h2>Иконки</h2>
-      <div class="icon-group">
-        <img :src="IconCheck" alt="Check" class="icon" />
-        <img :src="IconArrow" alt="Arrow" class="icon" />
       </div>
     </section>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent } from 'vue'
 import SimpleButton from './components/SimpleButton.vue'
-import XButton from './components/XButton.tsx'
-import { IconCheck, IconArrow } from './index'
 
-const variants = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'] as const
-const sizes = ['small', 'medium', 'large'] as const
-
-const handleClick = (variant: string) => {
-  console.log(`Нажата кнопка: ${variant}`)
-}
+export default defineComponent({
+  name: 'Demo',
+  components: {
+    SimpleButton
+  }
+})
 </script>
 
 <style scoped>
-.demo-app {
+.demo-container {
   padding: 2rem;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
-  font-family: Arial, sans-serif;
 }
 
-.demo-section {
-  margin-bottom: 3rem;
-}
-
-.demo-section h2 {
-  margin-bottom: 1rem;
+h1 {
   color: #333;
+  margin-bottom: 2rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+h2 {
+  color: #666;
+  margin-bottom: 1rem;
 }
 
 .button-group {
@@ -125,17 +94,5 @@ const handleClick = (variant: string) => {
   gap: 1rem;
   flex-wrap: wrap;
   align-items: center;
-}
-
-.icon-group {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-  color: #333;
 }
 </style>
